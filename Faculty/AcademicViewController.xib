@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AcademicViewController" customModule="Faculty" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="OTV-h1-czV" id="ELX-F7-Szg"/>
+                <outlet property="fullNameLabel" destination="49m-r5-HKC" id="L2K-We-G8H"/>
+                <outlet property="profilePicture" destination="iot-DA-Rzf" id="3P9-vK-62c"/>
+                <outlet property="tableView" destination="KrC-cc-lfT" id="cwx-1D-ugV"/>
+                <outlet property="topViewHeightConstraint" destination="hCY-QS-5ob" id="6BX-9r-BcZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="KrC-cc-lfT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" name="Fog"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKT-KZ-05p">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="male-plaecholder" translatesAutoresizingMaskIntoConstraints="NO" id="iot-DA-Rzf" customClass="ProfilePictureImageView" customModule="Faculty" customModuleProvider="target">
+                            <rect key="frame" x="144.5" y="24" width="86.5" height="86.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="iot-DA-Rzf" secondAttribute="height" multiplier="1:1" id="fYb-Sb-Kz5"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Full Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49m-r5-HKC">
+                            <rect key="frame" x="20" y="118.5" width="335" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f9-tj-kK5">
+                            <rect key="frame" x="0.0" y="147" width="375" height="0.5"/>
+                            <color key="backgroundColor" name="Sandstone"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="YbS-1S-REj"/>
+                            </constraints>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OTV-h1-czV">
+                            <rect key="frame" x="0.0" y="175.5" width="375" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="Z1P-8K-CAE"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="8" id="gV2-TM-LY9">
+                                <size key="itemSize" width="40" height="60"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zm6-hO-TPu">
+                            <rect key="frame" x="0.0" y="255.5" width="375" height="0.5"/>
+                            <color key="backgroundColor" name="Sandstone"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="aTG-w4-TOL"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar Faculty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWr-L8-Fn2">
+                            <rect key="frame" x="20" y="151.5" width="91" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="lnM-tv-g1E"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="LightSandstone"/>
+                    <constraints>
+                        <constraint firstItem="zm6-hO-TPu" firstAttribute="leading" secondItem="qKT-KZ-05p" secondAttribute="leading" id="82p-6p-ygx"/>
+                        <constraint firstItem="iot-DA-Rzf" firstAttribute="centerX" secondItem="qKT-KZ-05p" secondAttribute="centerX" id="A4b-A5-5a2"/>
+                        <constraint firstItem="3f9-tj-kK5" firstAttribute="leading" secondItem="qKT-KZ-05p" secondAttribute="leading" id="BuM-Zn-P0L"/>
+                        <constraint firstItem="mWr-L8-Fn2" firstAttribute="leading" secondItem="qKT-KZ-05p" secondAttribute="leading" constant="20" id="FeC-te-VBK"/>
+                        <constraint firstAttribute="trailing" secondItem="zm6-hO-TPu" secondAttribute="trailing" id="Off-aj-bIn"/>
+                        <constraint firstAttribute="trailing" secondItem="OTV-h1-czV" secondAttribute="trailing" id="Qob-Bz-TdR"/>
+                        <constraint firstItem="49m-r5-HKC" firstAttribute="leading" secondItem="qKT-KZ-05p" secondAttribute="leading" constant="20" id="SSl-EZ-dSV"/>
+                        <constraint firstItem="49m-r5-HKC" firstAttribute="top" secondItem="iot-DA-Rzf" secondAttribute="bottom" constant="8" id="Vbz-Qp-bGD"/>
+                        <constraint firstItem="iot-DA-Rzf" firstAttribute="top" secondItem="qKT-KZ-05p" secondAttribute="top" constant="24" id="fXd-VE-ygI"/>
+                        <constraint firstItem="zm6-hO-TPu" firstAttribute="top" secondItem="OTV-h1-czV" secondAttribute="bottom" id="fnS-c6-awm"/>
+                        <constraint firstAttribute="height" constant="256" id="hCY-QS-5ob"/>
+                        <constraint firstItem="mWr-L8-Fn2" firstAttribute="top" secondItem="3f9-tj-kK5" secondAttribute="bottom" constant="4" id="hbD-wH-bkE"/>
+                        <constraint firstAttribute="trailing" secondItem="3f9-tj-kK5" secondAttribute="trailing" id="hfv-0m-WPh"/>
+                        <constraint firstAttribute="trailing" secondItem="49m-r5-HKC" secondAttribute="trailing" constant="20" id="jxZ-PS-lk4"/>
+                        <constraint firstItem="OTV-h1-czV" firstAttribute="leading" secondItem="qKT-KZ-05p" secondAttribute="leading" id="qWu-jM-Q0p"/>
+                        <constraint firstItem="49m-r5-HKC" firstAttribute="bottom" secondItem="3f9-tj-kK5" secondAttribute="top" constant="-8" id="qr8-yM-DiY"/>
+                        <constraint firstAttribute="bottom" secondItem="zm6-hO-TPu" secondAttribute="bottom" id="wN2-uv-dra"/>
+                        <constraint firstItem="OTV-h1-czV" firstAttribute="top" secondItem="mWr-L8-Fn2" secondAttribute="bottom" constant="4" id="xUx-Qi-Ekq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KrC-cc-lfT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2io-Ll-0g9"/>
+                <constraint firstItem="KrC-cc-lfT" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="KJy-4X-sgZ"/>
+                <constraint firstItem="KrC-cc-lfT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="QZH-ws-Mp2"/>
+                <constraint firstItem="qKT-KZ-05p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T4T-pm-x4h"/>
+                <constraint firstAttribute="top" secondItem="qKT-KZ-05p" secondAttribute="top" id="YJG-Dl-Wef"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KrC-cc-lfT" secondAttribute="trailing" id="b3l-Hd-VXa"/>
+                <constraint firstItem="qKT-KZ-05p" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="jzT-TB-FeI"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="male-plaecholder" width="491" height="491"/>
+        <namedColor name="Fog">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightSandstone">
+            <color red="0.97647058823529409" green="0.96470588235294119" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Sandstone">
+            <color red="0.82352941176470584" green="0.76078431372549016" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

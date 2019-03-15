@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "UIImageView.layoutSubviews():UIImageView+Extensions.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "focusOnFaces">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ResearchersViewController.viewDidLoad():ResearchersViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
