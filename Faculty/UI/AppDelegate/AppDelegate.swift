@@ -18,7 +18,7 @@ class AppDelegate : UIResponder, UIApplicationDelegate {
         } else {
             window.rootViewController = MainViewController(interactor: interactor)
         }
-        
+    
         window.makeKeyAndVisible()
         return true
     }

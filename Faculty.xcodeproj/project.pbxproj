@@ -10,12 +10,19 @@
 		3A0A731B223C97F6003CC1EC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731A223C97F6003CC1EC /* API.swift */; };
 		3A0A731D223C9A2B003CC1EC /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731C223C9A2B003CC1EC /* Interactor.swift */; };
 		3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731E223C9B3B003CC1EC /* Database.swift */; };
-		3A0A7322223C9C9A003CC1EC /* Academic+AcademicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */; };
 		3A0A7325223C9E04003CC1EC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */; };
 		3A0A732B223CBD44003CC1EC /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7329223CBD44003CC1EC /* SetupViewController.swift */; };
 		3A0A732C223CBD44003CC1EC /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A732A223CBD44003CC1EC /* SetupViewController.xib */; };
 		3A0A732E223CDC88003CC1EC /* NSCharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */; };
 		3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A732F223CDFDD003CC1EC /* MainViewController.swift */; };
+		3A0A7333223CE922003CC1EC /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7331223CE922003CC1EC /* FavoritesViewController.swift */; };
+		3A0A7334223CE922003CC1EC /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A7332223CE922003CC1EC /* FavoritesViewController.xib */; };
+		3A0A7336223D9A1C003CC1EC /* Publication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7335223D9A1C003CC1EC /* Publication.swift */; };
+		3A0A7338223D9A35003CC1EC /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7337223D9A35003CC1EC /* Author.swift */; };
+		3A0A733A223D9AA6003CC1EC /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7339223D9AA6003CC1EC /* Name.swift */; };
+		3A0A733C223D9ACD003CC1EC /* PublicationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A733B223D9ACD003CC1EC /* PublicationObject.swift */; };
+		3A0A733E223D9ADC003CC1EC /* AuthorObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A733D223D9ADC003CC1EC /* AuthorObject.swift */; };
+		3A0A7340223D9AE7003CC1EC /* NameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A733F223D9AE7003CC1EC /* NameObject.swift */; };
 		3A309A4D2220FF3B007CB309 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */; };
 		3A309A5122210973007CB309 /* FacultyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A309A5022210973007CB309 /* FacultyViewController.xib */; };
 		3A6A19302239F3F700505BE4 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */; };
@@ -34,18 +41,27 @@
 		3AB875AC221B608A00593DFA /* Academic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB875AB221B608A00593DFA /* Academic.swift */; };
 		3AB875B2221BB14200593DFA /* ProfilePictureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB875B1221BB14200593DFA /* ProfilePictureImageView.swift */; };
 		3AB875B6221BBEEA00593DFA /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB875B5221BBEEA00593DFA /* Kingfisher.framework */; };
+		3AC13C6C223DAC22000F553C /* SimilarFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C6A223DAC22000F553C /* SimilarFacultyTableViewCell.swift */; };
+		3AC13C6D223DAC22000F553C /* SimilarFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC13C6B223DAC22000F553C /* SimilarFacultyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A0A731A223C97F6003CC1EC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3A0A731C223C9A2B003CC1EC /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		3A0A731E223C9B3B003CC1EC /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
-		3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Academic+AcademicObject.swift"; sourceTree = "<group>"; };
 		3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3A0A7329223CBD44003CC1EC /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		3A0A732A223CBD44003CC1EC /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
 		3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCharacterSet+Extensions.swift"; sourceTree = "<group>"; };
 		3A0A732F223CDFDD003CC1EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3A0A7331223CE922003CC1EC /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		3A0A7332223CE922003CC1EC /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
+		3A0A7335223D9A1C003CC1EC /* Publication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publication.swift; sourceTree = "<group>"; };
+		3A0A7337223D9A35003CC1EC /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		3A0A7339223D9AA6003CC1EC /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		3A0A733B223D9ACD003CC1EC /* PublicationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationObject.swift; sourceTree = "<group>"; };
+		3A0A733D223D9ADC003CC1EC /* AuthorObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorObject.swift; sourceTree = "<group>"; };
+		3A0A733F223D9AE7003CC1EC /* NameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameObject.swift; sourceTree = "<group>"; };
 		3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		3A309A5022210973007CB309 /* FacultyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacultyViewController.xib; sourceTree = "<group>"; };
 		3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
@@ -66,6 +82,8 @@
 		3AB875AB221B608A00593DFA /* Academic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Academic.swift; sourceTree = "<group>"; };
 		3AB875B1221BB14200593DFA /* ProfilePictureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureImageView.swift; sourceTree = "<group>"; };
 		3AB875B5221BBEEA00593DFA /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		3AC13C6A223DAC22000F553C /* SimilarFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarFacultyTableViewCell.swift; sourceTree = "<group>"; };
+		3AC13C6B223DAC22000F553C /* SimilarFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarFacultyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				3A7E2F1D221CA1750050BE06 /* AcademicObject.swift */,
-				3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */,
+				3A0A733B223D9ACD003CC1EC /* PublicationObject.swift */,
+				3A0A733D223D9ADC003CC1EC /* AuthorObject.swift */,
+				3A0A733F223D9AE7003CC1EC /* NameObject.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -122,6 +142,9 @@
 			isa = PBXGroup;
 			children = (
 				3AB875AB221B608A00593DFA /* Academic.swift */,
+				3A0A7335223D9A1C003CC1EC /* Publication.swift */,
+				3A0A7337223D9A35003CC1EC /* Author.swift */,
+				3A0A7339223D9AA6003CC1EC /* Name.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -152,6 +175,8 @@
 				3AB875A7221B5BC100593DFA /* AcademicViewController.swift */,
 				3AB875A8221B5BC100593DFA /* AcademicViewController.xib */,
 				3A0A732F223CDFDD003CC1EC /* MainViewController.swift */,
+				3A0A7331223CE922003CC1EC /* FavoritesViewController.swift */,
+				3A0A7332223CE922003CC1EC /* FavoritesViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -161,6 +186,8 @@
 			children = (
 				3A6A19312239FBA300505BE4 /* RelatedAcademicCollectionViewCell.swift */,
 				3A6A19322239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib */,
+				3AC13C6A223DAC22000F553C /* SimilarFacultyTableViewCell.swift */,
+				3AC13C6B223DAC22000F553C /* SimilarFacultyTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -310,6 +337,8 @@
 				3AB87591221B404500593DFA /* Assets.xcassets in Resources */,
 				3A309A5122210973007CB309 /* FacultyViewController.xib in Resources */,
 				3A0A732C223CBD44003CC1EC /* SetupViewController.xib in Resources */,
+				3AC13C6D223DAC22000F553C /* SimilarFacultyTableViewCell.xib in Resources */,
+				3A0A7334223CE922003CC1EC /* FavoritesViewController.xib in Resources */,
 				3A6A19342239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,17 +381,24 @@
 				3A0A731D223C9A2B003CC1EC /* Interactor.swift in Sources */,
 				3AB8758C221B404300593DFA /* FacultyViewController.swift in Sources */,
 				3A0A732B223CBD44003CC1EC /* SetupViewController.swift in Sources */,
-				3A0A7322223C9C9A003CC1EC /* Academic+AcademicObject.swift in Sources */,
 				3A7E2F1E221CA1750050BE06 /* AcademicObject.swift in Sources */,
 				3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */,
 				3A0A731B223C97F6003CC1EC /* API.swift in Sources */,
+				3AC13C6C223DAC22000F553C /* SimilarFacultyTableViewCell.swift in Sources */,
 				3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */,
+				3A0A7333223CE922003CC1EC /* FavoritesViewController.swift in Sources */,
+				3A0A7340223D9AE7003CC1EC /* NameObject.swift in Sources */,
+				3A0A733E223D9ADC003CC1EC /* AuthorObject.swift in Sources */,
 				3AB875AC221B608A00593DFA /* Academic.swift in Sources */,
+				3A0A733A223D9AA6003CC1EC /* Name.swift in Sources */,
+				3A0A733C223D9ACD003CC1EC /* PublicationObject.swift in Sources */,
 				3AB8759C221B465600593DFA /* SearchResultsViewController.swift in Sources */,
 				3A0A7325223C9E04003CC1EC /* UIViewController+Extensions.swift in Sources */,
+				3A0A7338223D9A35003CC1EC /* Author.swift in Sources */,
 				3A0A732E223CDC88003CC1EC /* NSCharacterSet+Extensions.swift in Sources */,
 				3AB875A9221B5BC100593DFA /* AcademicViewController.swift in Sources */,
 				3AB875B2221BB14200593DFA /* ProfilePictureImageView.swift in Sources */,
+				3A0A7336223D9A1C003CC1EC /* Publication.swift in Sources */,
 				3AB8758A221B404300593DFA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

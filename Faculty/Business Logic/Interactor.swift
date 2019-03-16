@@ -25,16 +25,36 @@ public class Interactor {
         return database.getAllAcademics()
     }
     
+    public func getAcademics(name: String) -> [Academic] {
+        return database.getAcademics(name: name)
+    }
+    
+    public func getAcademics(keyword: String) -> [Academic] {
+        return database.getAcademics(keyword: keyword)
+    }
+    
     public func getAcademic(id: Int) -> Academic? {
         return database.getAcademic(id: id)
     }
     
-    public func academicIsStored(id: Int) -> Bool {
-        return database.academicIsStored(id: id)
+    public func academicIsFavorite(id: Int) -> Bool {
+        return database.academicIsFavorite(id: id)
     }
     
     public func deleteAcademic(id: Int) throws {
         return try database.deleteAcademic(id: id)
+    }
+    
+    public func favoriteAcademic(id: Int) {
+        return database.favoriteAcademic(id: id)
+    }
+    
+    public func unfavoriteAcademic(id: Int) {
+        return database.unfavoriteAcademic(id: id)
+    }
+    
+    public func getFavoriteAcademics() -> [Academic] {
+        return database.getFavoriteAcademics()
     }
     
     public func queryAllAcademics(

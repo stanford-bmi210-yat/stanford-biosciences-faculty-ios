@@ -14,6 +14,8 @@ class FacultyViewController : UIViewController {
     init(interactor: Interactor) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
+        tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
+        title = "Faculty"
     }
     
     @available(*, unavailable)
@@ -23,7 +25,7 @@ class FacultyViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Faculty"
+        
         definesPresentationContext = true
         searchResultsController.delegate = self
         

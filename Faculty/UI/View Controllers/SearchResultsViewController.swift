@@ -16,24 +16,6 @@ class SearchResultsViewController : UIViewController {
     @IBOutlet var tableView: UITableView!
     
     private var searchResults: [Academic] = []
-    
-    private let nameSearchResults: [Academic] = [
-        .mark,
-        .sanjiv,
-        .andrew,
-        .jonathan,
-        .christina,
-        .catherine,
-        .hunter,
-    ]
-    
-    private let keywordSearchResults: [Academic] = [
-        .catherine,
-        .hunter,
-        .mark,
-        .sanjiv,
-    ]
-    
     public weak var delegate: SearchResultsViewControllerDelegate?
     
     init(interactor: Interactor) {
@@ -55,14 +37,21 @@ class SearchResultsViewController : UIViewController {
 }
 
 extension SearchResultsViewController {
-    private func updateResults(scope: SearchScope) {
-        if scope == .name {
-            searchResults = nameSearchResults
-        } else {
-            searchResults = keywordSearchResults
+    private func updateResults(scope: SearchScope, query: String) {
+        defer {
+            tableView.reloadData()
         }
         
-        tableView.reloadData()
+        #warning("Instead of doing this, get only name and id for search results")
+        guard query.count >= 3 else {
+            return searchResults = []
+        }
+        
+        if scope == .name {
+            searchResults = interactor.getAcademics(name: query)
+        } else {
+            searchResults = interactor.getAcademics(keyword: query)
+        }
     }
 }
 
@@ -72,7 +61,7 @@ extension SearchResultsViewController : UISearchBarDelegate {
             return
         }
         
-        updateResults(scope: scope)
+        updateResults(scope: scope, query: searchBar.text ?? "")
     }
 }
 
@@ -82,7 +71,7 @@ extension SearchResultsViewController : UISearchResultsUpdating {
             return
         }
         
-        updateResults(scope: scope)
+        updateResults(scope: scope, query: searchController.searchBar.text ?? "")
     }
 }
 

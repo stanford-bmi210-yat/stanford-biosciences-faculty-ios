@@ -28,10 +28,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" name="CardinalRed"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bx3-C9-C2g">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bx3-C9-C2g" userLabel="Header">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-fX-vIa">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4m-fX-vIa" userLabel="Separator">
                             <rect key="frame" x="0.0" y="19.5" width="375" height="0.5"/>
                             <color key="backgroundColor" name="Sandstone"/>
                             <constraints>

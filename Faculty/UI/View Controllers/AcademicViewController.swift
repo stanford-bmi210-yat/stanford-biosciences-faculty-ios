@@ -2,57 +2,68 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
+enum Row {
+    case similarFaculty
+    case text(String)
+    case publication(Publication)
+}
+
 class AcademicViewController : UIViewController {
     private let interactor: Interactor
     private let academic: Academic
     
+    @IBOutlet private var headerView: UIView!
     @IBOutlet private var profilePicture: ProfilePictureImageView!
     @IBOutlet private var fullNameLabel: UILabel!
-    @IBOutlet private var collectionView: UICollectionView!
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var topViewHeightConstraint: NSLayoutConstraint!
     
     private let topViewMinHeight: CGFloat = 260
     private let topViewMaxHeight: CGFloat = 300
     
-    var content: [(String, [String])]
+    var content: [(String, [Row])]
     
-    var academicIsStored: Bool {
-        return interactor.academicIsStored(id: academic.id)
+    var academicIsFavorite: Bool {
+        return interactor.academicIsFavorite(id: academic.id)
     }
     
     init(interactor: Interactor, academic: Academic) {
         self.interactor = interactor
         self.academic = academic
         
-        var content: [(String, [String])] = []
+        var content: [(String, [Row])] = []
         
         if !academic.title.isEmpty {
-            content.append(("Title", [academic.title]))
+            content.append(("Title", [.text(academic.title)]))
         }
         
         if !academic.homePrograms.isEmpty {
-            content.append(("Home Programs", academic.homePrograms))
+            content.append(("Home Programs", academic.homePrograms.map({ .text($0) })))
+        }
+        
+        if !academic.researchSummary.isEmpty {
+            content.append(("Research Summary", [.text(academic.researchSummary)]))
         }
         
         if !academic.researchDescription.isEmpty {
-            content.append(("Current Research", [academic.researchDescription]))
+            content.append(("Current Research", [.text(academic.researchDescription)]))
         }
         
-        if let email = academic.email, !email.isEmpty {
-            content.append(("Email", [email]))
-        }
+//        if let email = academic.email, !email.isEmpty {
+//            content.append(("Email", [.text(email)]))
+//        }
+//
+//        if let phoneNumbers = academic.phoneNumbers, !phoneNumbers.isEmpty {
+//            content.append(("Phone Numbers", phoneNumbers.map({ .text($0) })))
+//        }
+//
+//        if !academic.website.isEmpty {
+//            content.append(("Website", [.text(academic.website)]))
+//        }
         
-        if let phoneNumbers = academic.phoneNumbers, !phoneNumbers.isEmpty {
-            content.append(("Phone Numbers", phoneNumbers))
-        }
-        
-        if !academic.website.isEmpty {
-            content.append(("Website", [academic.website]))
-        }
+        content.append(("Similar Faculty", [.similarFaculty]))
         
         if let publications = academic.publications, !publications.isEmpty {
-            content.append(("Recent Publications", publications.map({ $0.title })))
+            content.append(("Publications", publications.map({ .publication($0) })))
         }
         
         self.content = content
@@ -69,38 +80,41 @@ class AcademicViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
-        fullNameLabel.attributedText = academic.attributedFullName(fontSize: 17)
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.alwaysBounceHorizontal = true
-        let nib = UINib(nibName: "RelatedAcademicCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
-        
-        tableView.dataSource = self
-        tableView.contentInsetAdjustmentBehavior = .never
-        tableView.contentInset = UIEdgeInsets(top: topViewHeightConstraint.constant, left: 0, bottom: 0, right: 0)
-        tableView.scrollIndicatorInsets = tableView.contentInset
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.allowsSelection = false
-        
         view.backgroundColor = .groupTableViewBackground
+        navigationItem.largeTitleDisplayMode = .never
         
         if let url = academic.profilePicture {
             profilePicture.kf.setImage(
                 with: url,
-                placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
+                placeholder: #imageLiteral(resourceName: "PersonPlaceholder.png")
             ) { result in
                 guard result.value?.image.size == CGSize(width: 1, height: 1) else {
                     return
                 }
                 
-                self.profilePicture.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+                self.profilePicture.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
             }
         } else {
-            profilePicture.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+            profilePicture.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
         }
+        
+        fullNameLabel.attributedText = academic.attributedFullName(fontSize: 17)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.contentInsetAdjustmentBehavior = .never
+        
+        tableView.contentInset = UIEdgeInsets(
+            top: headerView.bounds.height,
+            left: 0,
+            bottom: 0,
+            right: 0
+        )
+        
+        tableView.scrollIndicatorInsets = tableView.contentInset
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "text")
+        let nib = UINib(nibName: "SimilarFacultyTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "similar-faculty")
         
         updateActionButton()
     }
@@ -121,19 +135,22 @@ extension AcademicViewController {
             updateActionButton()
         }
         
-        alertErrorOnFailure {
-            // favorite
+        if academicIsFavorite {
+            interactor.unfavoriteAcademic(id: academic.id)
+        } else {
+            interactor.favoriteAcademic(id: academic.id)
         }
     }
 }
 
 extension AcademicViewController {
     private func updateActionButton() {
-//        navigationItem.rightBarButtonItem = academicIsStored ? nil : UIBarButtonItem(
-//            barButtonSystemItem: .add,
-//            target: self,
-//            action: #selector(action)
-//        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: academicIsFavorite ? #imageLiteral(resourceName: "HeartFilled.png") : #imageLiteral(resourceName: "HeartOutline.png"),
+            style: .plain,
+            target: self,
+            action: #selector(action)
+        )
     }
 }
 
@@ -157,16 +174,16 @@ extension AcademicViewController : UICollectionViewDataSource {
         if let url = academic.profilePicture {
             cell.imageView.kf.setImage(
                 with: url,
-                placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
+                placeholder: #imageLiteral(resourceName: "PersonPlaceholder.png")
             ) { result in
                 guard result.value?.image.size == CGSize(width: 1, height: 1) else {
                     return
                 }
                 
-                cell.imageView.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+                cell.imageView.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
             }
         } else {
-            cell.imageView.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+            cell.imageView.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
         }
         
         cell.textLabel.text = academic.lastName
@@ -209,14 +226,51 @@ extension AcademicViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let row = self.content[indexPath.section].1[indexPath.row]
         
-        let content = self.content[indexPath.section].1[indexPath.row]
+        switch row {
+        case .similarFaculty:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "similar-faculty", for: indexPath) as! SimilarFacultyTableViewCell
+            
+            if cell.collectionView.dataSource !== self {
+                cell.selectionStyle = .none
+                cell.collectionView.dataSource = self
+                cell.collectionView.delegate = self
+                cell.collectionView.reloadData()
+            }
+            
+            return cell
+        case let .publication(publication):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath)
+            
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.text = publication.title
+            cell.textLabel?.font = .systemFont(ofSize: 13)
+            cell.selectionStyle = .none
+            
+            return cell
+        case let .text(content):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath)
+            
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.text = content
+            cell.textLabel?.font = .systemFont(ofSize: 13)
+            cell.selectionStyle = .none
+            
+            return cell
+        }
+    }
+}
+
+extension AcademicViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = self.content[indexPath.section].1[indexPath.row]
         
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = content
-        cell.textLabel?.font = .systemFont(ofSize: 13)
-        
-        return cell
+        switch row {
+        case let .publication(publication):
+            UIApplication.shared.open(publication.url)
+        default:
+            return
+        }
     }
 }

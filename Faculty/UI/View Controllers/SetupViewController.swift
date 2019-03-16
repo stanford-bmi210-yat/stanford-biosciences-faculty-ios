@@ -17,9 +17,13 @@ class SetupViewController: UIViewController {
         fatalError()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         interactor.queryAllAcademics(
             progress: { progress in
                 DispatchQueue.main.async {
@@ -38,23 +42,10 @@ class SetupViewController: UIViewController {
                         }
                         
                         try self.interactor.add(academics: academics)
-                        self.presentMainView()
+                        self.window.rootViewController = MainViewController(interactor: self.interactor)
                     }
                 }
             }
         )
-    }
-    
-    private func presentMainView() {
-        let facultyViewController = FacultyViewController(interactor: interactor)
-        let tabBarController = UITabBarController()
-        tabBarController.tabBar.tintColor = #colorLiteral(red: 0.5490196078, green: 0.08235294118, blue: 0.08235294118, alpha: 1)
-        tabBarController.tabBar.barTintColor = #colorLiteral(red: 0.9764705882, green: 0.9647058824, blue: 0.937254902, alpha: 1)
-        
-        tabBarController.viewControllers = [
-            UINavigationController(rootViewController: facultyViewController),
-        ]
-        
-        window.rootViewController = tabBarController
     }
 }
