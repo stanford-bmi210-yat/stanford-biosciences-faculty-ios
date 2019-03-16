@@ -1,29 +1,81 @@
 import UIKit
 
-struct RelatedAcademic {
-    public let id: String
-    public let firstName: String
+public struct AuthorName : Decodable {
+    public let firstNameInitial: String?
     public let lastName: String
-    public let profilePicture: URL?
     
-    public var fullName: String {
-        return lastName + ", " + firstName
+    enum CodingKeys: String, CodingKey {
+        case firstNameInitial = "firstInitial"
+        case lastName = "last"
     }
 }
 
-struct Academic {
-    public let id: String
-    public let firstName: String
-    public let lastName: String
+public struct Author : Decodable {
+    public let name: AuthorName
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "initialLast"
+    }
+}
+
+public struct Publication : Decodable {
+    public let uuid: String
+    public let title: String
+    public let authors: [Author]?
+    public let year: Int?
+    public let url: URL
+    public let journal: String?
+    public let fullCitation: String
+    
+    enum CodingKeys: String, CodingKey {
+        case uuid = "uuid"
+        case title = "title"
+        case authors = "authors"
+        case year = "year"
+        case url = "linkAddress"
+        case journal = "journal"
+        case fullCitation = "fullCitation"
+    }
+    
+    public init(title: String) {
+        self.uuid = UUID().uuidString
+        self.title = title
+        self.authors = []
+        self.year = 2019
+        self.url = URL(string: "https://apple.com")!
+        self.journal = nil
+        self.fullCitation = ""
+    }
+}
+
+public struct Academic : Decodable {
+    public let id: Int
+    public let fullName: String
     public let profilePicture: URL?
-    public let email: String
-    public let phoneNumbers: [String]
+    public let email: String?
+    public let phoneNumbers: [String]?
     public let website: String
     public let title: String
     public let homePrograms: [String]
-    public let currentResearch: String
-    public let recentPublications: [String]
-    public let relatedAcademics: [RelatedAcademic]
+    public let researchDescription: String
+    public let researchSummary: String
+    public let publications: [Publication]?
+    public let similarAcademics: [Int]
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case fullName = "name"
+        case profilePicture = "imageAddress"
+        case email = "emailAddress"
+        case phoneNumbers = "phoneNumbers"
+        case website = "websiteAddress"
+        case title = "jobTitle"
+        case homePrograms = "homePrograms"
+        case researchSummary = "researchSummary"
+        case researchDescription = "researchDescription"
+        case publications = "publications"
+        case similarAcademics = "similarProfessors"
+    }
     
     public init(
         id: String,
@@ -36,42 +88,24 @@ struct Academic {
         title: String = "",
         homePrograms: [String] = [],
         currentResearch: String = "",
-        recentPublications: [String] = [],
-        relatedAcademics: [RelatedAcademic] = []
+        researchSummary: String = "",
+        recentPublications: [Publication] = [],
+        relatedAcademics: [Int] = []
     ) {
-        self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
+        self.id = id.hashValue
+        self.fullName = "\(firstName) \(lastName)"
         self.profilePicture = profilePicture
         self.email = email
         self.phoneNumbers = phoneNumbers
         self.website = website
         self.title = title
         self.homePrograms = homePrograms
-        self.currentResearch = currentResearch
-        self.recentPublications = recentPublications
-        self.relatedAcademics = relatedAcademics
+        self.researchDescription = currentResearch
+        self.researchSummary = researchSummary
+        self.publications = recentPublications
+        self.similarAcademics = relatedAcademics
     }
-    
-    public init(object: AcademicObject) {
-        self.id = object.id
-        self.firstName = object.firstName
-        self.lastName = object.lastName
-        self.profilePicture = object.profilePicture.flatMap({ URL(string: $0) })
-        self.email = object.email
-        self.phoneNumbers = Array(object.phoneNumbers)
-        self.website = object.website
-        self.title = object.title
-        self.homePrograms = Array(object.homePrograms)
-        self.currentResearch = object.currentResearch
-        self.recentPublications = Array(object.recentPublications)
-        self.relatedAcademics = []
-    }
-    
-    public var object: AcademicObject {
-        return AcademicObject(academic: self)
-    }
-    
+        
     public static let all: [Academic] = [
         .sanjiv,
         .andrew,
@@ -104,37 +138,17 @@ struct Academic {
         When we are successful the role of cost-effective diagnostics in cancer will be markedly enhanced with better patient outcomes.
         """,
         recentPublications: [
-            "Discussions with Leaders: A Conversation Between Sam Gambhir and Johannes Czernin",
-            "Striatal dopamine deficits predict reductions in striatal functional connectivity in major depression: a concurrent 11C-raclopride positron emission tomography and functional magnetic resonance imaging investigation",
-            "Assessment of tumor redox status through (S)-4-(3-[18F]fluoropropyl)-L-glutamic acid positron emission tomography imaging of system xc- activity",
-            "Surface-Enhanced Raman Scattering Nanoparticles for Multiplexed Imaging of Bladder Cancer Tissue Permeability and Molecular Phenotype",
-            "Development and MPI tracking of novel hypoxia-targeted theranostic exosomes",
+            Publication(title: "Discussions with Leaders: A Conversation Between Sam Gambhir and Johannes Czernin"),
+            Publication(title: "Striatal dopamine deficits predict reductions in striatal functional connectivity in major depression: a concurrent 11C-raclopride positron emission tomography and functional magnetic resonance imaging investigation"),
+            Publication(title: "Assessment of tumor redox status through (S)-4-(3-[18F]fluoropropyl)-L-glutamic acid positron emission tomography imaging of system xc- activity"),
+            Publication(title: "Surface-Enhanced Raman Scattering Nanoparticles for Multiplexed Imaging of Bladder Cancer Tissue Permeability and Molecular Phenotype"),
+            Publication(title: "Development and MPI tracking of novel hypoxia-targeted theranostic exosomes"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
+            "andrew".hashValue,
+            "jonathan".hashValue,
+            "hunter".hashValue,
+            "catherine".hashValue,
         ]
     )
     
@@ -149,37 +163,17 @@ struct Academic {
         title: "Assistant Professor (Research) of Medicine (Biomedical Informatics) and, by courtesy, of Biomedical Data Science",
         homePrograms: ["Biomedical Informatics", "Immunology"],
         recentPublications: [
-            "Data mining for mutation-specific targets in acute myeloid leukemia",
-            "GFPT2-expressing cancer-associated fibroblasts mediate metabolic reprogramming in human lung adenocarcinoma",
-            "The Immune Landscape of Cancer",
-            "Machine Learning Identifies Stemness Features Associated with Oncogenic Dedifferentiation",
-            "Subtype assignment of CLL based on B-cell subset associated gene signatures from normal bone marrow - A proof of concept study",
+            Publication(title: "Data mining for mutation-specific targets in acute myeloid leukemia"),
+            Publication(title: "GFPT2-expressing cancer-associated fibroblasts mediate metabolic reprogramming in human lung adenocarcinoma"),
+            Publication(title: "The Immune Landscape of Cancer"),
+            Publication(title: "Machine Learning Identifies Stemness Features Associated with Oncogenic Dedifferentiation"),
+            Publication(title: "Subtype assignment of CLL based on B-cell subset associated gene signatures from normal bone marrow - A proof of concept study"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "jonathan".hashValue,
+            "hunter".hashValue,
+            "catherine".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
@@ -204,43 +198,18 @@ struct Academic {
         3) Develop techniques for the systems-level interpretation of genotype-phenotype associations in cancer
         """,
         recentPublications: [
-            "Clonal replacement and heterogeneity in breast tumors treated with neoadjuvant HER2-targeted therapy",
-            "Assessment of ERBB2/HER2 Status in HER2-Equivocal Breast Cancers by FISH and 2013/2014 ASCO-CAP Guidelines",
-            "Quantification of subclonal selection in cancer from bulk sequencing data (vol 50, pg 895, 2018)",
-            "Harnessing Tumor Evolution to Circumvent Resistance",
-            "Quantification of subclonal selection in cancer from bulk sequencing data",
+            Publication(title: "Clonal replacement and heterogeneity in breast tumors treated with neoadjuvant HER2-targeted therapy"),
+            Publication(title: "Assessment of ERBB2/HER2 Status in HER2-Equivocal Breast Cancers by FISH and 2013/2014 ASCO-CAP Guidelines"),
+            Publication(title: "Quantification of subclonal selection in cancer from bulk sequencing data (vol 50, pg 895, 2018)"),
+            Publication(title: "Harnessing Tumor Evolution to Circumvent Resistance"),
+            Publication(title: "Quantification of subclonal selection in cancer from bulk sequencing data"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "andrew".hashValue,
+            "jonathan".hashValue,
+            "hunter".hashValue,
+            "catherine".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
@@ -270,37 +239,17 @@ struct Academic {
         Pregnant women are at icreased risk of contracting viruses including HIV and influenza, and are more susceptible to severe complications once infected. A major focus of the laboratory is to define the immune mechanisms that contribute to viral susceptibility in pregnant women. These investigations focus broadly on T cell, antibody, and NK cell responses to viruses during pregnancy, and use infection and vaccination as models. In addition, we are also studying the role of immunity in preterm birth.
         """,
         recentPublications: [
-            "Differential Induction of IFN-alpha and Modulation of CD112 and CD54 Expression Govern the Magnitude of NK Cell IFN-gamma Response to Influenza A Viruses",
-            "Zika Virus Infection Induces Cranial Neural Crest Cells to Produce Cytokines at Levels Detrimental for Neurogenesis",
-            "Human NK cell repertoire diversity reflects immune experience and correlates with viral susceptibility",
-            "Enhanced natural killer-cell and T-cell responses to influenza A virus during pregnancy",
-            "Genetic and environmental determinants of human NK cell diversity revealed by mass cytometry",
+            Publication(title: "Differential Induction of IFN-alpha and Modulation of CD112 and CD54 Expression Govern the Magnitude of NK Cell IFN-gamma Response to Influenza A Viruses"),
+            Publication(title: "Zika Virus Infection Induces Cranial Neural Crest Cells to Produce Cytokines at Levels Detrimental for Neurogenesis"),
+            Publication(title: "Human NK cell repertoire diversity reflects immune experience and correlates with viral susceptibility"),
+            Publication(title: "Enhanced natural killer-cell and T-cell responses to influenza A virus during pregnancy"),
+            Publication(title: "Genetic and environmental determinants of human NK cell diversity revealed by mass cytometry"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "andrew".hashValue,
+            "jonathan".hashValue,
+            "hunter".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
@@ -317,37 +266,17 @@ struct Academic {
             "Biomedical Informatics",
         ],
         recentPublications: [
-            "Fine-mapping cis-regulatory variants in diverse human populations",
-            "Tissue-Specific cis-Regulatory Divergence Implicates eloF in Inhibiting Interspecies Mating in Drosophila",
-            "Functional Genetic Variants Revealed by Massively Parallel Precise Genome Editing",
-            "Pooled ChIP-Seq Links Variation in Transcription Factor Binding to Complex Disease Risk",
-            "Dissecting the Genetic Basis of a Complex cis-Regulatory Adaptation",
+            Publication(title: "Fine-mapping cis-regulatory variants in diverse human populations"),
+            Publication(title: "Tissue-Specific cis-Regulatory Divergence Implicates eloF in Inhibiting Interspecies Mating in Drosophila"),
+            Publication(title: "Functional Genetic Variants Revealed by Massively Parallel Precise Genome Editing"),
+            Publication(title: "Pooled ChIP-Seq Links Variation in Transcription Factor Binding to Complex Disease Risk"),
+            Publication(title: "Dissecting the Genetic Basis of a Complex cis-Regulatory Adaptation"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "andrew".hashValue,
+            "jonathan".hashValue,
+            "catherine".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
@@ -367,37 +296,17 @@ struct Academic {
         I attended Davidson College and graduated cum laude from the University of Florida College of Medicine, then completed clinical training in pediatrics and neonatal-perinatal medicine at Lucile Packard Children's Hospital Stanford. During residency and fellowship my scholarly work was optimizing EMRs for neonatal care, and my Master's research was mining clinical data to predict the development of disease.
         """,
         recentPublications: [
-            "Neonatal Informatics: Transforming Neonatal Care Through Translational Bioinformatics",
-            "Impact of electronic medical record integration of a handoff tool on sign-out in a newborn intensive care unit",
-            "Neo-Bedside monitoring Device for Integrated Neonatal Intensive Care Unit (iNICU)",
-            "Prenatal treatment of ornithine transcarbamylase deficiency",
-            "Changing Management of the Patent Ductus Arteriosus: Effect on Neonatal Outcomes and Resource Utilization",
+            Publication(title: "Neonatal Informatics: Transforming Neonatal Care Through Translational Bioinformatics"),
+            Publication(title: "Impact of electronic medical record integration of a handoff tool on sign-out in a newborn intensive care unit"),
+            Publication(title: "Neo-Bedside monitoring Device for Integrated Neonatal Intensive Care Unit (iNICU)"),
+            Publication(title: "Prenatal treatment of ornithine transcarbamylase deficiency"),
+            Publication(title: "Changing Management of the Patent Ductus Arteriosus: Effect on Neonatal Outcomes and Resource Utilization"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "andrew".hashValue,
+            "hunter".hashValue,
+            "catherine".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
@@ -423,48 +332,30 @@ struct Academic {
         Our laboratory has pioneered methods for the development of intelligent systems. An important element of this work has involved the use of ontologies—formal descriptions of application areas that are created in a form that can be processed by both people and computers. CEDAR uses ontologies to ensure that scientific metadata are represented in a standardized way. Our Protégé system for ontology development—now with more than 300,000 registered users—allows us to continue to explore new methods for ontology engineering and for the construction of intelligent systems.
         """,
         recentPublications: [
-            "Interpretation of biological experiments changes with evolution of the Gene Ontology and its annotations",
-            "The center for expanded data annotation and retrieval",
-            "The Protégé Project: A Look Back and a Look Forward",
-            "The National Center for Biomedical Ontology",
-            "The CAIRR Pipeline for Submitting Standards-Compliant B and T Cell Receptor Repertoire Sequencing Studies to the National Center for Biotechnology Information Repositories",
+            Publication(title: "Interpretation of biological experiments changes with evolution of the Gene Ontology and its annotations"),
+            Publication(title: "The center for expanded data annotation and retrieval"),
+            Publication(title: "The Protégé Project: A Look Back and a Look Forward"),
+            Publication(title: "The National Center for Biomedical Ontology"),
+            Publication(title: "The CAIRR Pipeline for Submitting Standards-Compliant B and T Cell Receptor Repertoire Sequencing Studies to the National Center for Biotechnology Information Repositories"),
         ],
         relatedAcademics: [
-            RelatedAcademic(
-                id: "andrew",
-                firstName: "Andrew",
-                lastName: "Gentles",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=27065&type=bigger&ts=1538158152976")!
-            ),
-            RelatedAcademic(
-                id: "jonathan",
-                firstName: "Jonathan",
-                lastName: "Palma",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=8571&type=bigger&ts=1509533174814")!
-            ),
-            RelatedAcademic(
-                id: "hunter",
-                firstName: "Hunter",
-                lastName: "Fraser",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=15112&type=bigger&ts=1509505656427")!
-            ),
-            RelatedAcademic(
-                id: "catherine",
-                firstName: "Catherine",
-                lastName: "Blish",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=24377&type=bigger&ts=1509497798263")!
-            ),
-            RelatedAcademic(
-                id: "sanjiv",
-                firstName: "Sanjiv",
-                lastName: "Gambhir",
-                profilePicture: URL(string: "https://cap.stanford.edu/profiles/viewImage?profileId=3971&type=bigger&ts=1509541388615")!
-            ),
+            "andrew".hashValue,
+            "jonathan".hashValue,
+            "hunter".hashValue,
+            "catherine".hashValue,
+            "sanjiv".hashValue,
         ]
     )
     
-    public var fullName: String {
-        return lastName + ", " + firstName
+    public var firstName: String {
+        var names = fullName.components(separatedBy: " ")
+        return names.removeFirst()
+    }
+    
+    public var lastName: String {
+        var names = fullName.components(separatedBy: " ")
+        names.removeFirst()
+        return names.joined(separator: " ")
     }
     
     public func attributedFullName(fontSize: CGFloat) -> NSAttributedString {

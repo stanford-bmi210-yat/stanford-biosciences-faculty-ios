@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0A731B223C97F6003CC1EC /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731A223C97F6003CC1EC /* API.swift */; };
+		3A0A731D223C9A2B003CC1EC /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731C223C9A2B003CC1EC /* Interactor.swift */; };
+		3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A731E223C9B3B003CC1EC /* Database.swift */; };
+		3A0A7322223C9C9A003CC1EC /* Academic+AcademicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */; };
+		3A0A7325223C9E04003CC1EC /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */; };
+		3A0A732B223CBD44003CC1EC /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A7329223CBD44003CC1EC /* SetupViewController.swift */; };
+		3A0A732C223CBD44003CC1EC /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0A732A223CBD44003CC1EC /* SetupViewController.xib */; };
+		3A0A732E223CDC88003CC1EC /* NSCharacterSet+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */; };
+		3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0A732F223CDFDD003CC1EC /* MainViewController.swift */; };
 		3A309A4D2220FF3B007CB309 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */; };
 		3A309A5122210973007CB309 /* FacultyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A309A5022210973007CB309 /* FacultyViewController.xib */; };
 		3A6A19302239F3F700505BE4 /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */; };
@@ -14,7 +23,7 @@
 		3A6A19342239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A6A19322239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib */; };
 		3A7E2F1A221CA11E0050BE06 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7E2F19221CA11E0050BE06 /* Realm.framework */; };
 		3A7E2F1C221CA1230050BE06 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7E2F1B221CA1230050BE06 /* RealmSwift.framework */; };
-		3A7E2F1E221CA1750050BE06 /* Academic+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E2F1D221CA1750050BE06 /* Academic+Realm.swift */; };
+		3A7E2F1E221CA1750050BE06 /* AcademicObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E2F1D221CA1750050BE06 /* AcademicObject.swift */; };
 		3AB8758A221B404300593DFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB87589221B404300593DFA /* AppDelegate.swift */; };
 		3AB8758C221B404300593DFA /* FacultyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB8758B221B404300593DFA /* FacultyViewController.swift */; };
 		3AB87591221B404500593DFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AB87590221B404500593DFA /* Assets.xcassets */; };
@@ -28,6 +37,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0A731A223C97F6003CC1EC /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		3A0A731C223C9A2B003CC1EC /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		3A0A731E223C9B3B003CC1EC /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Academic+AcademicObject.swift"; sourceTree = "<group>"; };
+		3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		3A0A7329223CBD44003CC1EC /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		3A0A732A223CBD44003CC1EC /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCharacterSet+Extensions.swift"; sourceTree = "<group>"; };
+		3A0A732F223CDFDD003CC1EC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		3A309A5022210973007CB309 /* FacultyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FacultyViewController.xib; sourceTree = "<group>"; };
 		3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
@@ -35,7 +53,7 @@
 		3A6A19322239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedAcademicCollectionViewCell.xib; sourceTree = "<group>"; };
 		3A7E2F19221CA11E0050BE06 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		3A7E2F1B221CA1230050BE06 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		3A7E2F1D221CA1750050BE06 /* Academic+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Academic+Realm.swift"; sourceTree = "<group>"; };
+		3A7E2F1D221CA1750050BE06 /* AcademicObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicObject.swift; sourceTree = "<group>"; };
 		3AB87586221B404300593DFA /* Faculty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faculty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AB87589221B404300593DFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AB8758B221B404300593DFA /* FacultyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacultyViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +82,131 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A0A7319223C97E3003CC1EC /* Business Logic */ = {
+			isa = PBXGroup;
+			children = (
+				3A0A731C223C9A2B003CC1EC /* Interactor.swift */,
+				3A0A7326223CA518003CC1EC /* API */,
+				3A0A7320223C9C89003CC1EC /* Database */,
+			);
+			path = "Business Logic";
+			sourceTree = "<group>";
+		};
+		3A0A7320223C9C89003CC1EC /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				3A0A731E223C9B3B003CC1EC /* Database.swift */,
+				3A0A7323223C9CB7003CC1EC /* Objects */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		3A0A7323223C9CB7003CC1EC /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				3A7E2F1D221CA1750050BE06 /* AcademicObject.swift */,
+				3A0A7321223C9C9A003CC1EC /* Academic+AcademicObject.swift */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		3A0A7326223CA518003CC1EC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3A0A731A223C97F6003CC1EC /* API.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3A6A1935223C6E0B00505BE4 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3AB875AB221B608A00593DFA /* Academic.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		3A6A1936223C6E3A00505BE4 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3A6A193C223C6F3D00505BE4 /* AppDelegate */,
+				3A6A1937223C6E6A00505BE4 /* View Controllers */,
+				3A6A193D223C6F6200505BE4 /* Views */,
+				3A6A1938223C6E8700505BE4 /* Cells */,
+				3A6A193B223C6EFA00505BE4 /* Extensions */,
+				3A6A1939223C6EB500505BE4 /* Resources */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3A6A1937223C6E6A00505BE4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AB87592221B404500593DFA /* LaunchScreen.storyboard */,
+				3A0A7329223CBD44003CC1EC /* SetupViewController.swift */,
+				3A0A732A223CBD44003CC1EC /* SetupViewController.xib */,
+				3AB8758B221B404300593DFA /* FacultyViewController.swift */,
+				3A309A5022210973007CB309 /* FacultyViewController.xib */,
+				3AB8759B221B465600593DFA /* SearchResultsViewController.swift */,
+				3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */,
+				3AB875A7221B5BC100593DFA /* AcademicViewController.swift */,
+				3AB875A8221B5BC100593DFA /* AcademicViewController.xib */,
+				3A0A732F223CDFDD003CC1EC /* MainViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		3A6A1938223C6E8700505BE4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3A6A19312239FBA300505BE4 /* RelatedAcademicCollectionViewCell.swift */,
+				3A6A19322239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		3A6A1939223C6EB500505BE4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3AB87590221B404500593DFA /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3A6A193A223C6ECB00505BE4 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				3AB87595221B404500593DFA /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		3A6A193B223C6EFA00505BE4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */,
+				3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */,
+				3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3A6A193C223C6F3D00505BE4 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3AB87589221B404300593DFA /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		3A6A193D223C6F6200505BE4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AB875B1221BB14200593DFA /* ProfilePictureImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3AB8757D221B404300593DFA = {
 			isa = PBXGroup;
 			children = (
@@ -84,22 +227,10 @@
 		3AB87588221B404300593DFA /* Faculty */ = {
 			isa = PBXGroup;
 			children = (
-				3AB875AB221B608A00593DFA /* Academic.swift */,
-				3A7E2F1D221CA1750050BE06 /* Academic+Realm.swift */,
-				3AB87589221B404300593DFA /* AppDelegate.swift */,
-				3AB8758B221B404300593DFA /* FacultyViewController.swift */,
-				3A309A5022210973007CB309 /* FacultyViewController.xib */,
-				3AB8759B221B465600593DFA /* SearchResultsViewController.swift */,
-				3A6A192F2239F3F700505BE4 /* SearchResultsViewController.xib */,
-				3AB87590221B404500593DFA /* Assets.xcassets */,
-				3AB87592221B404500593DFA /* LaunchScreen.storyboard */,
-				3AB87595221B404500593DFA /* Info.plist */,
-				3AB875A7221B5BC100593DFA /* AcademicViewController.swift */,
-				3AB875A8221B5BC100593DFA /* AcademicViewController.xib */,
-				3A6A19312239FBA300505BE4 /* RelatedAcademicCollectionViewCell.swift */,
-				3A6A19322239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib */,
-				3AB875B1221BB14200593DFA /* ProfilePictureImageView.swift */,
-				3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */,
+				3A6A193A223C6ECB00505BE4 /* Configuration */,
+				3A6A1935223C6E0B00505BE4 /* Entities */,
+				3A0A7319223C97E3003CC1EC /* Business Logic */,
+				3A6A1936223C6E3A00505BE4 /* UI */,
 			);
 			path = Faculty;
 			sourceTree = "<group>";
@@ -178,6 +309,7 @@
 				3AB87594221B404500593DFA /* LaunchScreen.storyboard in Resources */,
 				3AB87591221B404500593DFA /* Assets.xcassets in Resources */,
 				3A309A5122210973007CB309 /* FacultyViewController.xib in Resources */,
+				3A0A732C223CBD44003CC1EC /* SetupViewController.xib in Resources */,
 				3A6A19342239FBA300505BE4 /* RelatedAcademicCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,10 +349,18 @@
 			files = (
 				3A6A19332239FBA300505BE4 /* RelatedAcademicCollectionViewCell.swift in Sources */,
 				3A309A4D2220FF3B007CB309 /* UITableView+Extensions.swift in Sources */,
+				3A0A731D223C9A2B003CC1EC /* Interactor.swift in Sources */,
 				3AB8758C221B404300593DFA /* FacultyViewController.swift in Sources */,
-				3A7E2F1E221CA1750050BE06 /* Academic+Realm.swift in Sources */,
+				3A0A732B223CBD44003CC1EC /* SetupViewController.swift in Sources */,
+				3A0A7322223C9C9A003CC1EC /* Academic+AcademicObject.swift in Sources */,
+				3A7E2F1E221CA1750050BE06 /* AcademicObject.swift in Sources */,
+				3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */,
+				3A0A731B223C97F6003CC1EC /* API.swift in Sources */,
+				3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */,
 				3AB875AC221B608A00593DFA /* Academic.swift in Sources */,
 				3AB8759C221B465600593DFA /* SearchResultsViewController.swift in Sources */,
+				3A0A7325223C9E04003CC1EC /* UIViewController+Extensions.swift in Sources */,
+				3A0A732E223CDC88003CC1EC /* NSCharacterSet+Extensions.swift in Sources */,
 				3AB875A9221B5BC100593DFA /* AcademicViewController.swift in Sources */,
 				3AB875B2221BB14200593DFA /* ProfilePictureImageView.swift in Sources */,
 				3AB8758A221B404300593DFA /* AppDelegate.swift in Sources */,
@@ -367,7 +507,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Faculty/Info.plist;
+				INFOPLIST_FILE = Faculty/Configuration/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -390,7 +530,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Faculty/Info.plist;
+				INFOPLIST_FILE = Faculty/Configuration/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

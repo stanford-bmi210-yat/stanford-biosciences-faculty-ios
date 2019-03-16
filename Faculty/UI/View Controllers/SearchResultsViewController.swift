@@ -10,6 +10,8 @@ enum SearchScope : Int {
 }
 
 class SearchResultsViewController : UIViewController {
+    private let interactor: Interactor
+    
     @IBOutlet var headerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
     
@@ -33,6 +35,16 @@ class SearchResultsViewController : UIViewController {
     ]
     
     public weak var delegate: SearchResultsViewControllerDelegate?
+    
+    init(interactor: Interactor) {
+        self.interactor = interactor
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         tableView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9647058824, blue: 0.937254902, alpha: 1)

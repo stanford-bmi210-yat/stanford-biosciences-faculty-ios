@@ -3,7 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
+         contextName = "ResearchersViewController.viewDidLoad():ResearchersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in API.getProfessor(id:result:):API.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(response as! HTTPURLResponse).status">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "UIImageView.layoutSubviews():UIImageView+Extensions.swift">
@@ -14,10 +22,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
+         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "ResearchersViewController.viewDidLoad():ResearchersViewController.swift">
+         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

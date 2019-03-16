@@ -3,7 +3,8 @@ import Kingfisher
 import RealmSwift
 
 class AcademicViewController : UIViewController {
-    let academic: Academic
+    private let interactor: Interactor
+    private let academic: Academic
     
     @IBOutlet private var profilePicture: ProfilePictureImageView!
     @IBOutlet private var fullNameLabel: UILabel!
@@ -16,13 +17,12 @@ class AcademicViewController : UIViewController {
     
     var content: [(String, [String])]
     
-    let realm = try! Realm()
-    
-    var academicIsNotStored: Bool {
-        return realm.object(ofType: AcademicObject.self, forPrimaryKey: academic.id) == nil
+    var academicIsStored: Bool {
+        return interactor.academicIsStored(id: academic.id)
     }
     
-    init(academic: Academic) {
+    init(interactor: Interactor, academic: Academic) {
+        self.interactor = interactor
         self.academic = academic
         
         var content: [(String, [String])] = []
@@ -35,33 +35,37 @@ class AcademicViewController : UIViewController {
             content.append(("Home Programs", academic.homePrograms))
         }
         
-        if !academic.currentResearch.isEmpty {
-            content.append(("Current Research", [academic.currentResearch]))
+        if !academic.researchDescription.isEmpty {
+            content.append(("Current Research", [academic.researchDescription]))
         }
         
-        if !academic.email.isEmpty {
-            content.append(("Email", [academic.email]))
+        if let email = academic.email, !email.isEmpty {
+            content.append(("Email", [email]))
         }
         
-        if !academic.phoneNumbers.isEmpty {
-            content.append(("Phone Numbers", academic.phoneNumbers))
+        if let phoneNumbers = academic.phoneNumbers, !phoneNumbers.isEmpty {
+            content.append(("Phone Numbers", phoneNumbers))
         }
         
         if !academic.website.isEmpty {
             content.append(("Website", [academic.website]))
         }
         
-        if !academic.recentPublications.isEmpty {
-            content.append(("Recent Publications", academic.recentPublications))
+        if let publications = academic.publications, !publications.isEmpty {
+            content.append(("Recent Publications", publications.map({ $0.title })))
         }
         
         self.content = content
         
         super.init(nibName: nil, bundle: nil)
+        
+        hidesBottomBarWhenPushed = true
     }
     
     @available(*, unavailable)
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,10 +87,20 @@ class AcademicViewController : UIViewController {
         
         view.backgroundColor = .groupTableViewBackground
         
-        profilePicture.kf.setImage(
-            with: academic.profilePicture,
-            placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
-        )
+        if let url = academic.profilePicture {
+            profilePicture.kf.setImage(
+                with: url,
+                placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
+            ) { result in
+                guard result.value?.image.size == CGSize(width: 1, height: 1) else {
+                    return
+                }
+                
+                self.profilePicture.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+            }
+        } else {
+            profilePicture.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+        }
         
         updateActionButton()
     }
@@ -107,43 +121,25 @@ extension AcademicViewController {
             updateActionButton()
         }
         
-        guard academicIsNotStored else {
-            return deleteAcademic()
+        alertErrorOnFailure {
+            // favorite
         }
-        
-        addAcademic()
     }
 }
 
 extension AcademicViewController {
     private func updateActionButton() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: academicIsNotStored ? .add : .trash,
-            target: self,
-            action: #selector(action)
-        )
-    }
-    
-    private func addAcademic() {
-        try! realm.write {
-            realm.add(academic.object)
-        }
-    }
-    
-    private func deleteAcademic() {
-        guard let object = realm.object(ofType: AcademicObject.self, forPrimaryKey: academic.id) else {
-            return
-        }
-        
-        try! realm.write {
-            return realm.delete(object)
-        }
+//        navigationItem.rightBarButtonItem = academicIsStored ? nil : UIBarButtonItem(
+//            barButtonSystemItem: .add,
+//            target: self,
+//            action: #selector(action)
+//        )
     }
 }
 
 extension AcademicViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return academic.relatedAcademics.count
+        return academic.similarAcademics.count
     }
     
     func collectionView(
@@ -152,27 +148,41 @@ extension AcademicViewController : UICollectionViewDataSource {
     ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RelatedAcademicCollectionViewCell
         
-        let relatedAcademic = academic.relatedAcademics[indexPath.item]
+        let id = academic.similarAcademics[indexPath.item]
         
-        cell.imageView.kf.setImage(
-            with: relatedAcademic.profilePicture,
-            placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
-        )
+        guard let academic = interactor.getAcademic(id: id) else {
+            return cell
+        }
         
-        cell.textLabel.text = relatedAcademic.lastName        
+        if let url = academic.profilePicture {
+            cell.imageView.kf.setImage(
+                with: url,
+                placeholder: #imageLiteral(resourceName: "male-plaecholder.jpg")
+            ) { result in
+                guard result.value?.image.size == CGSize(width: 1, height: 1) else {
+                    return
+                }
+                
+                cell.imageView.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+            }
+        } else {
+            cell.imageView.image = #imageLiteral(resourceName: "male-plaecholder.jpg")
+        }
+        
+        cell.textLabel.text = academic.lastName
         return cell
     }
 }
 
 extension AcademicViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let relatedAcademic = academic.relatedAcademics[indexPath.item]
+        let id = academic.similarAcademics[indexPath.item]
         
-        guard let academic = Academic.all.first(where: { $0.id == relatedAcademic.id }) else {
+        guard let academic = interactor.getAcademic(id: id) else {
             return
         }
         
-        let academicViewController = AcademicViewController(academic: academic)
+        let academicViewController = AcademicViewController(interactor: interactor, academic: academic)
         navigationController?.pushViewController(academicViewController, animated: true)
     }
 }

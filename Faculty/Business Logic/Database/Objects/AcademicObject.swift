@@ -3,17 +3,19 @@ import RealmSwift
 import Foundation
 
 class AcademicObject : Object {
-    @objc public dynamic var id: String = ""
+    @objc public dynamic var id: Int = 0
     @objc public dynamic var firstName: String = ""
     @objc public dynamic var lastName: String = ""
     @objc public dynamic var profilePicture: String?
-    @objc public dynamic var email: String = ""
+    @objc public dynamic var email: String? = ""
     public let phoneNumbers = List<String>()
     @objc public dynamic var website: String = ""
     @objc public dynamic var title: String = ""
     public let homePrograms = List<String>()
-    @objc public dynamic var currentResearch: String = ""
-    public let recentPublications = List<String>()
+    @objc public dynamic var researchDescription: String = ""
+    @objc public dynamic var researchSummary: String = ""
+    public let publications = List<String>()
+    public let similarAcademics = List<Int>()
     
     init(academic: Academic) {
         self.id = academic.id
@@ -21,12 +23,18 @@ class AcademicObject : Object {
         self.lastName = academic.lastName
         self.profilePicture = academic.profilePicture?.absoluteString
         self.email = academic.email
-        self.phoneNumbers.append(objectsIn: academic.phoneNumbers)
+        
+        if let phoneNumbers = academic.phoneNumbers {
+            self.phoneNumbers.append(objectsIn: phoneNumbers)
+        }
+        
         self.website = academic.website
         self.title = academic.title
         self.homePrograms.append(objectsIn: academic.homePrograms)
-        self.currentResearch = academic.currentResearch
-        self.recentPublications.append(objectsIn: academic.recentPublications)
+        self.researchDescription = academic.researchDescription
+        self.researchSummary = academic.researchSummary
+//        self.publications.append(objectsIn: academic.publications)
+        self.similarAcademics.append(objectsIn: academic.similarAcademics)
         super.init()
     }
     

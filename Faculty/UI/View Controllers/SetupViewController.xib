@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SetupViewController" customModule="Faculty" customModuleProvider="target">
+            <connections>
+                <outlet property="progressView" destination="hGb-eF-ueH" id="LRj-SN-kRa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="yNX-LP-VA9">
+                    <rect key="frame" x="94" y="240" width="187.5" height="187.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="yNX-LP-VA9" secondAttribute="height" id="dm6-9i-gkr"/>
+                    </constraints>
+                </imageView>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hGb-eF-ueH">
+                    <rect key="frame" x="20" y="427.5" width="335" height="2"/>
+                    <color key="progressTintColor" name="LightSandstone"/>
+                    <color key="trackTintColor" red="1" green="1" blue="1" alpha="0.24876760563380285" colorSpace="custom" customColorSpace="sRGB"/>
+                </progressView>
+            </subviews>
+            <color key="backgroundColor" name="CardinalRed"/>
+            <constraints>
+                <constraint firstItem="hGb-eF-ueH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="IId-5J-DC5"/>
+                <constraint firstItem="yNX-LP-VA9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LYP-fp-4rU"/>
+                <constraint firstItem="yNX-LP-VA9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="r7c-I9-bhQ"/>
+                <constraint firstAttribute="trailing" secondItem="hGb-eF-ueH" secondAttribute="trailing" constant="20" id="sZe-bo-0sh"/>
+                <constraint firstItem="hGb-eF-ueH" firstAttribute="top" secondItem="yNX-LP-VA9" secondAttribute="bottom" id="vZ6-u2-wAX"/>
+                <constraint firstItem="yNX-LP-VA9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="viG-WU-zCk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Logo" width="1024" height="1024"/>
+        <namedColor name="CardinalRed">
+            <color red="0.5490196078431373" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightSandstone">
+            <color red="0.97647058823529409" green="0.96470588235294119" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
