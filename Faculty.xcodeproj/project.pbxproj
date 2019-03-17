@@ -43,6 +43,9 @@
 		3AB875B6221BBEEA00593DFA /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB875B5221BBEEA00593DFA /* Kingfisher.framework */; };
 		3AC13C6C223DAC22000F553C /* SimilarFacultyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C6A223DAC22000F553C /* SimilarFacultyTableViewCell.swift */; };
 		3AC13C6D223DAC22000F553C /* SimilarFacultyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC13C6B223DAC22000F553C /* SimilarFacultyTableViewCell.xib */; };
+		3AC13C70223EB1A5000F553C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C6E223EB1A5000F553C /* ImageViewController.swift */; };
+		3AC13C71223EB1A5000F553C /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC13C6F223EB1A5000F553C /* ImageViewController.xib */; };
+		3AC13C73223EBC0E000F553C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C72223EBC0E000F553C /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		3AB875B5221BBEEA00593DFA /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		3AC13C6A223DAC22000F553C /* SimilarFacultyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarFacultyTableViewCell.swift; sourceTree = "<group>"; };
 		3AC13C6B223DAC22000F553C /* SimilarFacultyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimilarFacultyTableViewCell.xib; sourceTree = "<group>"; };
+		3AC13C6E223EB1A5000F553C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		3AC13C6F223EB1A5000F553C /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		3AC13C72223EBC0E000F553C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,8 @@
 				3A0A732F223CDFDD003CC1EC /* MainViewController.swift */,
 				3A0A7331223CE922003CC1EC /* FavoritesViewController.swift */,
 				3A0A7332223CE922003CC1EC /* FavoritesViewController.xib */,
+				3AC13C6E223EB1A5000F553C /* ImageViewController.swift */,
+				3AC13C6F223EB1A5000F553C /* ImageViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 				3A309A4C2220FF3B007CB309 /* UITableView+Extensions.swift */,
 				3A0A7324223C9E04003CC1EC /* UIViewController+Extensions.swift */,
 				3A0A732D223CDC88003CC1EC /* NSCharacterSet+Extensions.swift */,
+				3AC13C72223EBC0E000F553C /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC13C71223EB1A5000F553C /* ImageViewController.xib in Resources */,
 				3AB875AA221B5BC100593DFA /* AcademicViewController.xib in Resources */,
 				3A6A19302239F3F700505BE4 /* SearchResultsViewController.xib in Resources */,
 				3AB87594221B404500593DFA /* LaunchScreen.storyboard in Resources */,
@@ -383,12 +393,14 @@
 				3A0A732B223CBD44003CC1EC /* SetupViewController.swift in Sources */,
 				3A7E2F1E221CA1750050BE06 /* AcademicObject.swift in Sources */,
 				3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */,
+				3AC13C70223EB1A5000F553C /* ImageViewController.swift in Sources */,
 				3A0A731B223C97F6003CC1EC /* API.swift in Sources */,
 				3AC13C6C223DAC22000F553C /* SimilarFacultyTableViewCell.swift in Sources */,
 				3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */,
 				3A0A7333223CE922003CC1EC /* FavoritesViewController.swift in Sources */,
 				3A0A7340223D9AE7003CC1EC /* NameObject.swift in Sources */,
 				3A0A733E223D9ADC003CC1EC /* AuthorObject.swift in Sources */,
+				3AC13C73223EBC0E000F553C /* String+Extensions.swift in Sources */,
 				3AB875AC221B608A00593DFA /* Academic.swift in Sources */,
 				3A0A733A223D9AA6003CC1EC /* Name.swift in Sources */,
 				3A0A733C223D9ACD003CC1EC /* PublicationObject.swift in Sources */,

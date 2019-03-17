@@ -28,11 +28,46 @@ class SearchResultsViewController : UIViewController {
         fatalError()
     }
     
+    deinit {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+
         tableView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9647058824, blue: 0.937254902, alpha: 1)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
+    }
+}
+
+extension SearchResultsViewController {
+    @objc func keyboardWillChangeFrame(notification: Notification) {
+        let userInfo = notification.userInfo!
+        let window = view.window!
+        let keyboardFrameEnd = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let tableViewWindowFrame = tableView.convert(tableView.bounds, to: window)
+        let tableViewOffset = (window.bounds.height - tableViewWindowFrame.maxY)
+        
+        if keyboardFrameEnd.origin.y - window.bounds.height == 0 {
+            tableView.contentInset = .zero
+        } else {
+            tableView.contentInset = UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: keyboardFrameEnd.height - tableViewOffset,
+                right: 0
+            )
+        }
+        
+        tableView.scrollIndicatorInsets = tableView.contentInset
     }
 }
 

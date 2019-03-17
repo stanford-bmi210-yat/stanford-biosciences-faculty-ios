@@ -3,13 +3,19 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ResearchersViewController.viewDidLoad():ResearchersViewController.swift">
+         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in API.getProfessor(id:result:):API.swift">
+         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsViewController.keyboardWillChangeFrame(notification:):SearchResultsViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(response as! HTTPURLResponse).status">
+               value = "UIScreen.main.bounds.height">
+            </PersistentString>
+            <PersistentString
+               value = "tableViewWindowFrame.maxY">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -22,10 +28,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
+         contextName = "ResearchersViewController.viewDidLoad():ResearchersViewController.swift">
       </ContextState>
       <ContextState
-         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
+         contextName = "closure #1 in API.getProfessor(id:result:):API.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(response as! HTTPURLResponse).status">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

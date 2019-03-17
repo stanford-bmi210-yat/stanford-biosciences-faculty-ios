@@ -11,10 +11,16 @@ enum Row {
 class AcademicViewController : UIViewController {
     private let interactor: Interactor
     private let academic: Academic
-    
+
     @IBOutlet private var headerView: UIView!
     @IBOutlet private var profilePicture: ProfilePictureImageView!
     @IBOutlet private var fullNameLabel: UILabel!
+    @IBOutlet private var callButton: UIButton!
+    @IBOutlet private var callLabel: UILabel!
+    @IBOutlet private var websiteButton: UIButton!
+    @IBOutlet private var websiteLabel: UILabel!
+    @IBOutlet private var emailButton: UIButton!
+    @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var tableView: UITableView!
     
     private let topViewMinHeight: CGFloat = 260
@@ -47,18 +53,6 @@ class AcademicViewController : UIViewController {
         if !academic.researchDescription.isEmpty {
             content.append(("Current Research", [.text(academic.researchDescription)]))
         }
-        
-//        if let email = academic.email, !email.isEmpty {
-//            content.append(("Email", [.text(email)]))
-//        }
-//
-//        if let phoneNumbers = academic.phoneNumbers, !phoneNumbers.isEmpty {
-//            content.append(("Phone Numbers", phoneNumbers.map({ .text($0) })))
-//        }
-//
-//        if !academic.website.isEmpty {
-//            content.append(("Website", [.text(academic.website)]))
-//        }
         
         content.append(("Similar Faculty", [.similarFaculty]))
         
@@ -127,10 +121,32 @@ class AcademicViewController : UIViewController {
         navigationController?.navigationBar.backgroundColor = .clear
         navigationController?.view.backgroundColor = .clear
     }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        if let phoneNumbers = academic.phoneNumbers, !phoneNumbers.isEmpty {
+            callButton.addTarget(self, action: #selector(callButtonTouched), for: .touchUpInside)
+        } else {
+            callButton.isEnabled = false
+            callButton.backgroundColor = .lightGray
+            callLabel.textColor = .lightGray
+        }
+        
+        websiteButton.addTarget(self, action: #selector(websiteButtonTouched), for: .touchUpInside)
+        
+        if academic.email != nil {
+            emailButton.addTarget(self, action: #selector(emailButtonTouched), for: .touchUpInside)
+        } else {
+            emailButton.isEnabled = false
+            emailButton.backgroundColor = .lightGray
+            emailLabel.textColor = .lightGray
+        }
+    }
 }
 
 extension AcademicViewController {
-    @objc private func action() {
+    @objc private func favoritButtonTouched() {
         defer {
             updateActionButton()
         }
@@ -141,6 +157,60 @@ extension AcademicViewController {
             interactor.favoriteAcademic(id: academic.id)
         }
     }
+    
+    @IBAction func profilePictureTouched(_ sender: UIButton) {
+        guard let imageURL = academic.profilePicture else {
+            return
+        }
+        
+        let imageViewControlle = ImageViewController(imageURL: imageURL)
+        present(imageViewControlle, animated: true)
+    }
+    
+    @objc private func callButtonTouched() {
+        let actionSheet = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        
+        guard let phoneNumbers = academic.phoneNumbers else {
+            return
+        }
+        
+        for phoneNumber in phoneNumbers {
+            let action = UIAlertAction(title: phoneNumber, style: .default) { _ in
+                guard let url = URL(string: "tel://" + phoneNumber.filterNonDecimalDigits()) else {
+                    return
+                }
+                
+                UIApplication.shared.open(url)
+            }
+            
+            actionSheet.addAction(action)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    @objc private func websiteButtonTouched() {
+        UIApplication.shared.open(academic.website)
+    }
+    
+    @objc private func emailButtonTouched() {
+        guard let email = academic.email else {
+            return
+        }
+        
+        guard let url = URL(string: "mailto://" + email) else {
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
 }
 
 extension AcademicViewController {
@@ -149,7 +219,7 @@ extension AcademicViewController {
             image: academicIsFavorite ? #imageLiteral(resourceName: "HeartFilled.png") : #imageLiteral(resourceName: "HeartOutline.png"),
             style: .plain,
             target: self,
-            action: #selector(action)
+            action: #selector(favoritButtonTouched)
         )
     }
 }
@@ -241,21 +311,34 @@ extension AcademicViewController : UITableViewDataSource {
             
             return cell
         case let .publication(publication):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "publication") ?? UITableViewCell(
+                style: .subtitle,
+                reuseIdentifier: "publication"
+            )
             
+            cell.selectionStyle = .none
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = publication.title
-            cell.textLabel?.font = .systemFont(ofSize: 13)
-            cell.selectionStyle = .none
+            cell.textLabel?.font = .systemFont(ofSize: 15)
+            cell.textLabel?.textColor = #colorLiteral(red: 0.5490196078, green: 0.08235294118, blue: 0.08235294118, alpha: 1)
+            
+            cell.detailTextLabel?.numberOfLines = 0
+            cell.detailTextLabel?.textColor = .gray
+            
+            cell.detailTextLabel?.text = [
+                publication.journal,
+                publication.year.map({ $0.description })
+            ].compactMap({ $0 }).joined(separator: ", ")
             
             return cell
         case let .text(content):
             let cell = tableView.dequeueReusableCell(withIdentifier: "text", for: indexPath)
             
+            cell.selectionStyle = .none
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = content
-            cell.textLabel?.font = .systemFont(ofSize: 13)
-            cell.selectionStyle = .none
+            cell.textLabel?.font = .systemFont(ofSize: 15)
+            cell.textLabel?.textColor = nil
             
             return cell
         }

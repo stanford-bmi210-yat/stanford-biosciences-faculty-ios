@@ -24,7 +24,7 @@ class SetupViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     
-        interactor.queryAllAcademics(
+        interactor.fetchAllAcademics(
             progress: { progress in
                 DispatchQueue.main.async {
                     self.progressView.progress = progress

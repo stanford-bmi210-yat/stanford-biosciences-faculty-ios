@@ -30,7 +30,7 @@ class AcademicObject : Object {
             self.phoneNumbers.append(objectsIn: phoneNumbers)
         }
         
-        self.website = academic.website
+        self.website = academic.website.absoluteString
         self.title = academic.title
         self.homePrograms.append(objectsIn: academic.homePrograms)
         self.researchDescription = academic.researchDescription
@@ -68,7 +68,7 @@ extension Academic {
         self.profilePicture = object.profilePicture.flatMap({ URL(string: $0) })
         self.email = object.email
         self.phoneNumbers = Array(object.phoneNumbers)
-        self.website = object.website
+        self.website = URL(string: object.website)!
         self.title = object.title
         self.homePrograms = Array(object.homePrograms)
         self.researchDescription = object.researchDescription

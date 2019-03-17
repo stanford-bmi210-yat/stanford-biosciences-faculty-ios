@@ -57,14 +57,18 @@ public class Interactor {
         return database.getFavoriteAcademics()
     }
     
-    public func queryAllAcademics(
+    public func fetchAllAcademics(
         progress: @escaping (Float) -> Void,
         result: @escaping ([Academic]?, Error?) -> Void
     ) {
-        return api.queryAllAcademics(progress: progress, result: result)
+        return api.fetchAllAcademics(progress: progress, result: result)
     }
     
-    public func queryAcademic(id: Int, result: @escaping (Academic?, Error?) -> Void) {
-        return api.queryAcademic(id: id, result: result)
+    public func fetchAcademic(id: Int, result: @escaping (Academic?, Error?) -> Void) {
+        return api.fetchAcademic(id: id, result: result)
+    }
+    
+    public func fetchAcademicIds(keyword: String, result: @escaping ([String]?, Error?) -> Void) {
+        return api.fetchAcademicIds(keyword: keyword, result: result)
     }
 }
