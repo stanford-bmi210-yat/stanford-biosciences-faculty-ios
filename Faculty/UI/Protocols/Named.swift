@@ -16,6 +16,18 @@ extension Named {
         return names.joined(separator: " ")
     }
     
+    public var firstNameInitial: String {
+        return String(firstName.prefix(1)).uppercased()
+    }
+    
+    public var lastNameInitial: String {
+        return String(lastName.prefix(1)).uppercased()
+    }
+    
+    public var initials: String {
+        return lastNameInitial + firstNameInitial
+    }
+    
     public func attributedFullName(fontSize: CGFloat) -> NSAttributedString {
         let font = UIFont.systemFont(ofSize: fontSize)
         let boldFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)

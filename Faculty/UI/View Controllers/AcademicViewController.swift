@@ -77,21 +77,16 @@ class AcademicViewController : UIViewController {
         view.backgroundColor = .groupTableViewBackground
         navigationItem.largeTitleDisplayMode = .never
         
-        if let url = academic.profilePicture {
-            profilePicture.kf.setImage(
-                with: url,
-                placeholder: #imageLiteral(resourceName: "PersonPlaceholder.png")
-            ) { result in
-                guard result.value?.image.size == CGSize(width: 1, height: 1) else {
-                    return
-                }
-                
-                self.profilePicture.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
-            }
-        } else {
-            profilePicture.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
-        }
+        profilePicture.initials = self.academic.initials
         
+        profilePicture.kf.setImage(with: academic.profilePicture) { result in
+            guard result.value?.image.size == CGSize(width: 1, height: 1) else {
+                return self.profilePicture.initials = nil
+            }
+            
+            self.profilePicture.image = nil
+        }
+
         fullNameLabel.attributedText = academic.attributedFullName(fontSize: 17)
         
         tableView.dataSource = self
@@ -159,11 +154,11 @@ extension AcademicViewController {
     }
     
     @IBAction func profilePictureTouched(_ sender: UIButton) {
-        guard let imageURL = academic.profilePicture else {
+        guard profilePicture.initials == nil  else {
             return
         }
         
-        let imageViewControlle = ImageViewController(imageURL: imageURL)
+        let imageViewControlle = ImageViewController(imageURL: academic.profilePicture)
         present(imageViewControlle, animated: true)
     }
     
@@ -241,19 +236,14 @@ extension AcademicViewController : UICollectionViewDataSource {
             return cell
         }
         
-        if let url = academic.profilePicture {
-            cell.imageView.kf.setImage(
-                with: url,
-                placeholder: #imageLiteral(resourceName: "PersonPlaceholder.png")
-            ) { result in
-                guard result.value?.image.size == CGSize(width: 1, height: 1) else {
-                    return
-                }
-                
-                cell.imageView.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
+        cell.imageView.initials = academic.initials
+        
+        cell.imageView.kf.setImage(with: academic.profilePicture) { result in
+            guard result.value?.image.size == CGSize(width: 1, height: 1) else {
+                return cell.imageView.initials = nil
             }
-        } else {
-            cell.imageView.image = #imageLiteral(resourceName: "PersonPlaceholder.png")
+            
+            cell.imageView.image = nil
         }
         
         cell.textLabel.text = academic.lastName

@@ -50,7 +50,7 @@ class FacultyViewController : UIViewController {
         
         data = interactor.getAllAcademicSummaries()
             .reduce(into: [:] as [String: [AcademicSummary]]) { result, academic in
-                let initial = String(academic.lastName.prefix(1)).uppercased()
+                let initial = academic.lastNameInitial
                 result[initial] = (result[initial] ?? []) + [academic]
             }.reduce(into: [] as [(String, [AcademicSummary])]) { result, element in
                 let (initial, academics) = element

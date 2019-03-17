@@ -53,6 +53,7 @@ extension FavoritesViewController {
 
 extension FavoritesViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.setBackgroundMessage(favoriteAcademics.isEmpty ? "No Favorites" : nil)
         return favoriteAcademics.count
     }
     

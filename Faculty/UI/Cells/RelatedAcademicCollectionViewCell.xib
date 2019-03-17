@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kVp-VM-aRs">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kVp-VM-aRs" customClass="ProfilePictureImageView" customModule="Faculty" customModuleProvider="target">
                         <rect key="frame" x="3" y="0.0" width="74" height="74"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="kVp-VM-aRs" secondAttribute="height" multiplier="1:1" id="GJP-uU-U1f"/>

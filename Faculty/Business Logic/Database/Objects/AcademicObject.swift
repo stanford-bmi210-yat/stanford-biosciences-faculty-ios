@@ -7,7 +7,7 @@ class AcademicObject : Object {
     @objc public dynamic var fullName: String = ""
     @objc public dynamic var firstName: String = ""
     @objc public dynamic var lastName: String = ""
-    @objc public dynamic var profilePicture: String?
+    @objc public dynamic var profilePicture: String = ""
     @objc public dynamic var email: String? = ""
     public let phoneNumbers = List<String>()
     @objc public dynamic var website: String = ""
@@ -23,7 +23,7 @@ class AcademicObject : Object {
         self.fullName = academic.fullName
         self.firstName = academic.firstName
         self.lastName = academic.lastName
-        self.profilePicture = academic.profilePicture?.absoluteString
+        self.profilePicture = academic.profilePicture.absoluteString
         self.email = academic.email
         
         if let phoneNumbers = academic.phoneNumbers {
@@ -65,7 +65,7 @@ extension Academic {
     init(object: AcademicObject) {
         self.id = object.id
         self.fullName = object.fullName
-        self.profilePicture = object.profilePicture.flatMap({ URL(string: $0) })
+        self.profilePicture = URL(string: object.profilePicture)!
         self.email = object.email
         self.phoneNumbers = Array(object.phoneNumbers)
         self.website = URL(string: object.website)!

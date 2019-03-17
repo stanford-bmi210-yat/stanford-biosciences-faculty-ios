@@ -128,11 +128,12 @@ extension SearchResultsViewController : UISearchResultsUpdating {
 
 extension SearchResultsViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        tableView.setBackgroundMessage(searchResults.isEmpty ? "No Results" : nil)
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Top Results"
+        return searchResults.isEmpty ? nil : "Top Results"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

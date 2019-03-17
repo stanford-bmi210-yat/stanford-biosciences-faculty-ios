@@ -3,7 +3,7 @@ import UIKit
 public struct Academic : Decodable {
     public let id: Int
     public let fullName: String
-    public let profilePicture: URL?
+    public let profilePicture: URL
     public let email: String?
     public let phoneNumbers: [String]?
     public let website: URL
