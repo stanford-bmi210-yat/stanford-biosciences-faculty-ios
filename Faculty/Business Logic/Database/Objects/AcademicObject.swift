@@ -81,3 +81,10 @@ extension Academic {
         return AcademicObject(academic: self)
     }
 }
+
+extension AcademicSummary {
+    init(object: AcademicObject) {
+        self.id = object.id
+        self.fullName = object.fullName
+    }
+}

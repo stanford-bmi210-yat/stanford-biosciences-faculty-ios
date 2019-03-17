@@ -37,24 +37,24 @@ public class Database {
         }
     }
     
-    public func getAllAcademics() -> [Academic] {
+    public func getAllAcademicSummaries() -> [AcademicSummary] {
         return realm.objects(AcademicObject.self)
             .sorted(byKeyPath: "lastName")
-            .map({ Academic(object: $0 ) })
+            .map({ AcademicSummary(object: $0 ) })
     }
     
-    public func getAcademics(name: String) -> [Academic] {
+    public func getAcademics(name: String) -> [AcademicSummary] {
         return realm.objects(AcademicObject.self)
             .filter("fullName CONTAINS[cd] '\(name)'")
             .sorted(byKeyPath: "lastName")
-            .map({ Academic(object: $0 ) })
+            .map({ AcademicSummary(object: $0 ) })
     }
     
-    public func getAcademics(keyword: String) -> [Academic] {
+    public func getAcademics(keyword: String) -> [AcademicSummary] {
         return realm.objects(AcademicObject.self)
             .filter("researchSummary CONTAINS[cd] '\(keyword)'")
             .sorted(byKeyPath: "lastName")
-            .map({ Academic(object: $0 ) })
+            .map({ AcademicSummary(object: $0 ) })
     }
     
     public func getAcademic(id: Int) -> Academic? {

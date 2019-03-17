@@ -6,7 +6,7 @@ class FacultyViewController : UIViewController {
     private lazy var searchResultsController = SearchResultsViewController(interactor: interactor)
     private lazy var searchController = UISearchController(searchResultsController: searchResultsController)
     
-    private var data: [(initial: String, academics: [Academic])] = []
+    private var data: [(initial: String, academics: [AcademicSummary])] = []
     
     @IBOutlet var headerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
@@ -48,11 +48,11 @@ class FacultyViewController : UIViewController {
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
-        data = interactor.getAllAcademics()
-            .reduce(into: [:] as [String: [Academic]]) { result, academic in
+        data = interactor.getAllAcademicSummaries()
+            .reduce(into: [:] as [String: [AcademicSummary]]) { result, academic in
                 let initial = String(academic.lastName.prefix(1)).uppercased()
                 result[initial] = (result[initial] ?? []) + [academic]
-            }.reduce(into: [] as [(String, [Academic])]) { result, element in
+            }.reduce(into: [] as [(String, [AcademicSummary])]) { result, element in
                 let (initial, academics) = element
                 
                 let sortedAcademics = academics.sorted {
@@ -80,8 +80,12 @@ class FacultyViewController : UIViewController {
 }
 
 extension FacultyViewController : SearchResultsViewControllerDelegate {
-    func didSelectSearchResult(searchResult: Academic) {
-        let searchResultViewController = AcademicViewController(interactor: interactor, academic: searchResult)
+    func didSelectSearchResult(searchResult: AcademicSummary) {
+        guard let academic = interactor.getAcademic(id: searchResult.id) else {
+            return
+        }
+        
+        let searchResultViewController = AcademicViewController(interactor: interactor, academic: academic)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Search", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(searchResultViewController, animated: true)
     }
@@ -133,7 +137,12 @@ extension FacultyViewController : UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let academic = data[indexPath.section].academics[indexPath.row]
+        let academicSummary = data[indexPath.section].academics[indexPath.row]
+        
+        guard let academic = interactor.getAcademic(id: academicSummary.id) else {
+            return
+        }
+        
         let academicViewController = AcademicViewController(interactor: interactor, academic: academic)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Faculty", style: .plain, target: nil, action: nil)
         navigationController?.pushViewController(academicViewController, animated: true)

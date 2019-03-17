@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SearchResultsViewControllerDelegate : class {
-    func didSelectSearchResult(searchResult: Academic)
+    func didSelectSearchResult(searchResult: AcademicSummary)
 }
 
 enum SearchScope : Int {
@@ -15,12 +15,25 @@ class SearchResultsViewController : UIViewController {
     @IBOutlet var headerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
     
-    private var searchResults: [Academic] = []
+    private var searchResults: [AcademicSummary] = []
     public weak var delegate: SearchResultsViewControllerDelegate?
+    
+    private var keyboardFrameEnd: CGRect = .zero {
+        didSet {
+            updateTableViewContentInset()
+        }
+    }
     
     init(interactor: Interactor) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
     }
     
     @available(*, unavailable)
@@ -34,25 +47,35 @@ class SearchResultsViewController : UIViewController {
     }
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillChangeFrame),
-            name: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil
-        )
-
         tableView.backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9647058824, blue: 0.937254902, alpha: 1)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateTableViewContentInset()
     }
 }
 
 extension SearchResultsViewController {
     @objc func keyboardWillChangeFrame(notification: Notification) {
         let userInfo = notification.userInfo!
-        let window = view.window!
-        let keyboardFrameEnd = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        self.keyboardFrameEnd = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    }
+}
+
+extension SearchResultsViewController {
+    private func updateTableViewContentInset() {
+        guard let tableView = self.tableView else {
+            return
+        }
+        
+        guard let window = view.window else {
+            return
+        }
+        
         let tableViewWindowFrame = tableView.convert(tableView.bounds, to: window)
         let tableViewOffset = (window.bounds.height - tableViewWindowFrame.maxY)
         
@@ -69,17 +92,10 @@ extension SearchResultsViewController {
         
         tableView.scrollIndicatorInsets = tableView.contentInset
     }
-}
-
-extension SearchResultsViewController {
+    
     private func updateResults(scope: SearchScope, query: String) {
         defer {
             tableView.reloadData()
-        }
-        
-        #warning("Instead of doing this, get only name and id for search results")
-        guard query.count >= 3 else {
-            return searchResults = []
         }
         
         if scope == .name {

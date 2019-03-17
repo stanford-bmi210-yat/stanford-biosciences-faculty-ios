@@ -21,15 +21,15 @@ public class Interactor {
         return try database.add(academics: academics)
     }
     
-    public func getAllAcademics() -> [Academic] {
-        return database.getAllAcademics()
+    public func getAllAcademicSummaries() -> [AcademicSummary] {
+        return database.getAllAcademicSummaries()
     }
     
-    public func getAcademics(name: String) -> [Academic] {
+    public func getAcademics(name: String) -> [AcademicSummary] {
         return database.getAcademics(name: name)
     }
     
-    public func getAcademics(keyword: String) -> [Academic] {
+    public func getAcademics(keyword: String) -> [AcademicSummary] {
         return database.getAcademics(keyword: keyword)
     }
     

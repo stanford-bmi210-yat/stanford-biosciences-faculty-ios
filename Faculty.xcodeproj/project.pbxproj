@@ -46,6 +46,8 @@
 		3AC13C70223EB1A5000F553C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C6E223EB1A5000F553C /* ImageViewController.swift */; };
 		3AC13C71223EB1A5000F553C /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AC13C6F223EB1A5000F553C /* ImageViewController.xib */; };
 		3AC13C73223EBC0E000F553C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C72223EBC0E000F553C /* String+Extensions.swift */; };
+		3AC13C75223EEE9A000F553C /* AcademicSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C74223EEE9A000F553C /* AcademicSummary.swift */; };
+		3AC13C78223EF016000F553C /* Named.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC13C77223EF016000F553C /* Named.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		3AC13C6E223EB1A5000F553C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		3AC13C6F223EB1A5000F553C /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		3AC13C72223EBC0E000F553C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		3AC13C74223EEE9A000F553C /* AcademicSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademicSummary.swift; sourceTree = "<group>"; };
+		3AC13C77223EF016000F553C /* Named.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Named.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 				3A0A7335223D9A1C003CC1EC /* Publication.swift */,
 				3A0A7337223D9A35003CC1EC /* Author.swift */,
 				3A0A7339223D9AA6003CC1EC /* Name.swift */,
+				3AC13C74223EEE9A000F553C /* AcademicSummary.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				3A6A193C223C6F3D00505BE4 /* AppDelegate */,
 				3A6A1937223C6E6A00505BE4 /* View Controllers */,
 				3A6A193D223C6F6200505BE4 /* Views */,
+				3AC13C76223EF005000F553C /* Protocols */,
 				3A6A1938223C6E8700505BE4 /* Cells */,
 				3A6A193B223C6EFA00505BE4 /* Extensions */,
 				3A6A1939223C6EB500505BE4 /* Resources */,
@@ -281,6 +287,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3AC13C76223EF005000F553C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3AC13C77223EF016000F553C /* Named.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -395,6 +409,7 @@
 				3A0A7330223CDFDD003CC1EC /* MainViewController.swift in Sources */,
 				3AC13C70223EB1A5000F553C /* ImageViewController.swift in Sources */,
 				3A0A731B223C97F6003CC1EC /* API.swift in Sources */,
+				3AC13C75223EEE9A000F553C /* AcademicSummary.swift in Sources */,
 				3AC13C6C223DAC22000F553C /* SimilarFacultyTableViewCell.swift in Sources */,
 				3A0A731F223C9B3B003CC1EC /* Database.swift in Sources */,
 				3A0A7333223CE922003CC1EC /* FavoritesViewController.swift in Sources */,
@@ -412,6 +427,7 @@
 				3AB875B2221BB14200593DFA /* ProfilePictureImageView.swift in Sources */,
 				3A0A7336223D9A1C003CC1EC /* Publication.swift in Sources */,
 				3AB8758A221B404300593DFA /* AppDelegate.swift in Sources */,
+				3AC13C78223EF016000F553C /* Named.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

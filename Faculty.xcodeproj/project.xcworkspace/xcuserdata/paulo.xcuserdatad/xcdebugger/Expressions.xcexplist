@@ -3,27 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SearchResultsViewController.keyboardWillChangeFrame(notification:):SearchResultsViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "UIScreen.main.bounds.height">
-            </PersistentString>
-            <PersistentString
-               value = "tableViewWindowFrame.maxY">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "UIImageView.layoutSubviews():UIImageView+Extensions.swift">
          <PersistentStrings>
             <PersistentString
                value = "focusOnFaces">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResearchersViewController.viewDidAppear(_:):ResearchersViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsViewController.updateTableViewContentInset():SearchResultsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "keyboardFrameEnd.height">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -37,6 +31,20 @@
                value = "(response as! HTTPURLResponse).status">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultsViewController.keyboardWillChangeFrame(notification:):SearchResultsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UIScreen.main.bounds.height">
+            </PersistentString>
+            <PersistentString
+               value = "tableViewWindowFrame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ResearchersViewController.viewWillAppear(_:):ResearchersViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
