@@ -16,4 +16,4 @@ Open `Faculty.xcodeproj` using Xcode and run the application.
 
 ## Beta Testing
 
-If you want to beta test the app, [apply on HockeyApp](https://rink.hockeyapp.net/apps/766cc672753e479c984fb74c39d48938).
+If you want to beta test the app, [apply on HockeyApp](https://rink.hockeyapp.net/recruit/161d057c3d4f43dba72d3562104e6cce).
